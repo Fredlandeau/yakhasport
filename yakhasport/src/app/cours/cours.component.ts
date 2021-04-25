@@ -4,7 +4,7 @@ import { Title, Meta } from '@angular/platform-browser';
 @Component({
   selector: 'app-cours',
   templateUrl: './cours.component.html',
-  styleUrls: ['./cours.component.scss']
+  styleUrls: ['./cours.component.scss'],
 })
 export class CoursComponent implements OnInit {
   title = 'Planning des cours - Yakhasport La Fabrik Fumel';
