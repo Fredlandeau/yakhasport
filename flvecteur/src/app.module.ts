@@ -7,8 +7,8 @@ import { join } from 'path';
 @Module({
   imports: [
     ServeStaticModule.forRoot({
-      // rootPath: join(__dirname, '../../yakhasport/dist', 'yakhasport'),
-      rootPath: join(__dirname, '..', 'front'),
+      rootPath: join(__dirname, '../../yakhasport/dist', 'yakhasport'),
+      // rootPath: join(__dirname, '..', 'front'),
       exclude: ['/api*'],
     }),
   ],
