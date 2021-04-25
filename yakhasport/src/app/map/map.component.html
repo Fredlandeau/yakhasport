@@ -1,0 +1,18 @@
+<div uk-scrollspy="cls: uk-animation-slide-bottom; target: .uk-card; delay: 300; repeat: true">
+    <div *ngIf="apiLoaded | async" class="uk-card uk-card-default uk-margin">
+        <google-map [options]="options">
+            <map-marker #marker="mapMarker" [options]="markeroptions" (mapClick)="openInfoWindow(marker)">
+
+            </map-marker>
+            <map-info-window>
+                <div id="contentInfo">
+                    <h1 id="firstHeading" class="firstHeading">Yakhasport Fumel "La Fabrik"</h1>
+                    <div class="contentInfoBody">
+                        <p>3 impasse du Lot 47500 FUMEL <br>Salle de sport de 1100 m²</p>
+                    </div>
+                </div>
+            </map-info-window>
+
+        </google-map>
+    </div>
+</div>

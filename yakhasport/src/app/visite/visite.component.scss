@@ -1,0 +1,14 @@
+.border-pink {
+    border: 4px solid #c92b67;
+}
+
+.uk-heading-bullet-pink::before {
+    content: "";
+    display: inline-block;
+    position: relative;
+    top: calc(-.1 * 1em);
+    vertical-align: middle;
+    height: calc(4px + .7em);
+    margin-right: calc(5px + .2em);
+    border-left: calc(5px + .1em) solid #c92b67;
+}

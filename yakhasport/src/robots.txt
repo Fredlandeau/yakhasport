@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://lafabrik-fumel.fr/sitemap.xml
