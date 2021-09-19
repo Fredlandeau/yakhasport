@@ -1,0 +1,29 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model commentaires {
+  id      Int       @id @default(autoincrement())
+  userid  Int?
+  user    user?     @relation(fields: [userid], references: [id])
+  date    DateTime? @default(now()) @db.DateTime(0)
+  coments String?   @db.MediumText
+  type    String?   @db.VarChar(50)
+}
+
+model user {
+  id           Int            @id @default(autoincrement())
+  nom          String?        @db.VarChar(50)
+  premon       String?        @db.VarChar(50)
+  email        String?        @db.VarChar(50)
+  mdp          String?        @db.VarChar(50)
+  pouvoir      String?        @db.VarChar(50)
+  createdat    DateTime?      @db.DateTime(0)
+  updatedat    DateTime?      @db.DateTime(0)
+  commentaires commentaires[]
+}
