@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, ExtraOptions } from '@angular/router';
 import { AbonnementsComponent } from './abonnements/abonnements.component';
 import { CoursComponent } from './cours/cours.component';
+import { LoginComponent } from './login/login.component';
 import { VisiteComponent } from './visite/visite.component';
 
 const routes: Routes = [
@@ -10,6 +11,7 @@ const routes: Routes = [
     pathMatch: 'full',
     redirectTo: 'visite',
   },
+  { path: 'login', component: LoginComponent },
   {
     path: 'visite',
     component: VisiteComponent,

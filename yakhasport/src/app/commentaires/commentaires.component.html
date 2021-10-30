@@ -1,0 +1,24 @@
+<p>commentaires works!</p>
+
+<div *ngFor="let comment of coments">
+    <article class="uk-article">
+
+        <h1 class="uk-article-title"><a class="uk-link-reset" href="">Heading</a></h1>
+
+        <p class="uk-article-meta">Written by <a href="#">{{comment.user.prenom}} {{comment.user.nom}}</a> le {{comment.date}}</p>
+
+        <p class="uk-text-lead">{{comment.coments}}</p>
+
+
+        <div class="uk-grid-small uk-child-width-auto" uk-grid>
+            <div>
+                <a class="uk-button uk-button-text" href="#">Read more</a>
+            </div>
+            <div>
+                <a class="uk-button uk-button-text" href="#">5 Comments</a>
+            </div>
+        </div>
+
+    </article>
+
+</div>

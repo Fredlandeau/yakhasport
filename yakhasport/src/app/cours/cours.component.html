@@ -1,12 +1,28 @@
 <div id="content" class=" uk-container-xlarge">
     <h4 class="uk-text-center uk-margin-top">Planning des cours</h4>
     <div class="uk-section uk-section-secondary uk-section-small uk-preserve-color">
-        <div class="uk-container">
+        <div class="uk-container-xlarge">
 
 
-            <embed src="./../../assets//Planning cours.pdf" width="100%" height="900px" />
+            <!-- <embed src="./../../assets//Planning cours.pdf" width="100%" height="900px" /> -->
 
-            <table class="uk-table uk-table-responsive uk-table-divider uk-margin-bottom">
+            <div class="uk-section uk-text-center">
+                <div class="uk-container">
+                    <!--  <img [src]="'../../assets/planning.jpg'" alt="" #planning id="planning"> -->
+                    <img [src]="Planning" alt="" #planning id="planning" *ngIf="!isLoadingImg">
+                    <div uk-spinner="ratio: 3" *ngIf="isLoadingImg"></div>
+                </div>
+            </div>
+
+            <div class="uk-container">
+                <h4>Modifier le planning</h4>
+                <p>Pour modifier le planning uploadez le fichier image</p>
+                <form>
+                    <input type="file" placeholder="Charger le fichier" (change)="sendFile($event)">
+                </form>
+            </div>
+
+            <!-- <table class="uk-table uk-table-responsive uk-table-divider uk-margin-bottom">
                 <thead>
                     <tr>
                         <th></th>
@@ -95,7 +111,7 @@
                         <td></td>
                     </tr>
                 </tbody>
-            </table>
+            </table> -->
         </div>
     </div>
     <h4 id="coursenligne" class="uk-text-center uk-margin-top">Cours en ligne</h4>

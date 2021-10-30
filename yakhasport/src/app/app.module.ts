@@ -18,7 +18,13 @@ import { VisiteComponent } from './visite/visite.component';
 
 import { MapComponent } from './map/map.component';
 
-import { CovidComponent} from './covid/covid.component';
+import { CovidComponent } from './covid/covid.component';
+import { CommentairesComponent } from './commentaires/commentaires.component';
+import { SharedModule } from './shared/shared.module';
+import { LoginComponent } from './login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { NgxTiptapModule } from 'ngx-tiptap';
 
 @NgModule({
   declarations: [
@@ -31,14 +37,20 @@ import { CovidComponent} from './covid/covid.component';
     CoursComponent,
     MapComponent,
     CovidComponent,
+    CommentairesComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-   // GraphQLModule,
+    // GraphQLModule,
     HttpClientModule,
     HttpClientJsonpModule,
+    FormsModule,
+    ReactiveFormsModule,
     GoogleMapsModule,
+    SharedModule,
+    NgxTiptapModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -14,12 +14,14 @@ model commentaires {
   date    DateTime? @default(now()) @db.DateTime(0)
   coments String?   @db.MediumText
   type    String?   @db.VarChar(50)
+  publie  Boolean?  @default(true) @db.TinyInt
 }
 
 model user {
   id           Int            @id @default(autoincrement())
+  username     String?        @db.VarChar(50)
   nom          String?        @db.VarChar(50)
-  premon       String?        @db.VarChar(50)
+  prenom       String?        @db.VarChar(50)
   email        String?        @db.VarChar(50)
   mdp          String?        @db.VarChar(50)
   pouvoir      String?        @db.VarChar(50)
