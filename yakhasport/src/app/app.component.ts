@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 
 @Component({
@@ -6,12 +6,12 @@ import { Meta } from '@angular/platform-browser';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'yakhasport la fabrik fumel';
 
   constructor(private metaTagService: Meta) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.metaTagService.addTags([
       { name: 'keywords', content: 'yakhasport, la fabrik, fumel, salle de sport, sport, fitness, musculation, cardio, zumba, streching, circuit training, yoga, bike, méthode Holistique Orientée Pilates et Périnée' },
       { name: 'robots', content: 'index, follow' },
