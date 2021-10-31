@@ -36,7 +36,7 @@ const headercontent = [
     imgurl: '../../assets/visite/espace/IMG-20201009-WA0003.jpg',
   },
   {
-    url: '/login',
+    url: '/connexion',
     slogan:
       'Vous souhaitez commenter, vous êtes administrateur, alors connectez-vous',
     slogan2: 'Créez un compte pour rester en contact',

@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { GoogleMapsModule } from '@angular/google-maps';
 
@@ -39,6 +40,8 @@ import { CommentairesComponent } from './commentaires/commentaires.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     // GraphQLModule,
     HttpClientModule,
     HttpClientJsonpModule,

@@ -31,8 +31,9 @@ const routes: Routes = [
     path: 'cours',
     component: CoursComponent,
   },
+
   {
-    path: 'login',
+    path: 'connexion',
     component: LoginComponent,
   },
   { path: '**', component: VisiteComponent },

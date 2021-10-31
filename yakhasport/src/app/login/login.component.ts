@@ -30,18 +30,6 @@ export class LoginComponent implements OnInit {
     private readonly loginService: LoginService,
     private readonly userService: UserService
   ) {
-    this.titleService.setTitle(this.title);
-    this.metaTagService.updateTag({
-      name: 'description',
-      content:
-        'Planning des cours de la salle de sport La Fabrik Fumel, videos de cours',
-    });
-
-    // vérifier si  loggé?
-    // this.isLogged = false;
-    console.log(this.userService.isLogged());
-    this.isLogged = this.userService.isLogged() === undefined ? false : true;
-
     this.loginForm = this.fb.group({
       username: new FormControl('', Validators.required),
       mdp: new FormControl('', Validators.required),
@@ -57,7 +45,17 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.buildForm();
+    // vérifier si  loggé?
+    // this.isLogged = false;
+    console.log(this.userService.isLogged());
+    this.isLogged = this.userService.isLogged() === undefined ? false : true;
+
+    this.titleService.setTitle(this.title);
+    this.metaTagService.updateTag({
+      name: 'description',
+      content:
+        'Planning des cours de la salle de sport La Fabrik Fumel, videos de cours',
+    });
   }
 
   buildForm(): void {}
