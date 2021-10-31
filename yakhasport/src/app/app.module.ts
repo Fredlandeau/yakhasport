@@ -18,7 +18,9 @@ import { VisiteComponent } from './visite/visite.component';
 
 import { MapComponent } from './map/map.component';
 
-import { CovidComponent} from './covid/covid.component';
+import { CovidComponent } from './covid/covid.component';
+import { LoginComponent } from './login/login.component';
+import { CommentairesComponent } from './commentaires/commentaires.component';
 
 @NgModule({
   declarations: [
@@ -31,11 +33,13 @@ import { CovidComponent} from './covid/covid.component';
     CoursComponent,
     MapComponent,
     CovidComponent,
+    LoginComponent,
+    CommentairesComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-   // GraphQLModule,
+    // GraphQLModule,
     HttpClientModule,
     HttpClientJsonpModule,
     GoogleMapsModule,

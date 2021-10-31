@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Meta, Title } from '@angular/platform-browser';
 import { UserService } from '../shared/user.service';
 
 import { LoginService } from './login.service';
@@ -15,16 +16,27 @@ import { LoginService } from './login.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  title = 'Connexion - Yakhasport La Fabrik Fumel';
+
   loginForm: FormGroup;
   createUserForm: FormGroup;
 
   isLogged: boolean;
 
   constructor(
+    private titleService: Title,
+    private metaTagService: Meta,
     private readonly fb: FormBuilder,
     private readonly loginService: LoginService,
     private readonly userService: UserService
   ) {
+    this.titleService.setTitle(this.title);
+    this.metaTagService.updateTag({
+      name: 'description',
+      content:
+        'Planning des cours de la salle de sport La Fabrik Fumel, videos de cours',
+    });
+
     // vérifier si  loggé?
     // this.isLogged = false;
     console.log(this.userService.isLogged());
