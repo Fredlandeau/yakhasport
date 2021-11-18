@@ -25,7 +25,7 @@
         <div class="uk-container-xsmall uk-margin-auto" *ngIf="!isLogged">
 
             <div class="uk-section-small uk-text-center">
-                <div class="uk-container">
+                <div class="uk-container" uk-scrollspy="cls: uk-animation-slide-left; target: .uk-card ; delay: 300; repeat: true">
                     <h3 class="uk-card-title">Membre</h3>
                     <div class="uk-card uk-card-default uk-border-rounded connex">
                         <form class="uk-form-stacked" [formGroup]="loginForm" (submit)="LogIn()">
@@ -63,7 +63,7 @@
         <div class="uk-container-xsmall uk-margin-auto" *ngIf="!isLogged">
 
             <div class="uk-section-small uk-text-center">
-                <div class="uk-container">
+                <div class="uk-container" uk-scrollspy="cls: uk-animation-slide-right; target: .uk-card ; delay: 300; repeat: true">
                     <h3 class="uk-card-title">Devenir membre</h3>
                     <div class="uk-card uk-card-default uk-border-rounded creez">
                         <form class="uk-form-stacked" [formGroup]="createUserForm" (ngSubmit)="createUser()">

@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Commentaires, CommentairesService } from './commentaires.service';
 
+import { Editor } from '@tiptap/core';
+import StarterKit from '@tiptap/starter-kit';
+import BubbleMenu from '@tiptap/extension-bubble-menu';
+
+import TextAlign from '@tiptap/extension-text-align';
+
 @Component({
   selector: 'app-commentaires',
   templateUrl: './commentaires.component.html',
@@ -8,6 +14,17 @@ import { Commentaires, CommentairesService } from './commentaires.service';
 })
 export class CommentairesComponent implements OnInit {
   coments: Commentaires[];
+
+  editor = new Editor({
+    extensions: [
+      StarterKit,
+      TextAlign.configure({
+        types: ['heading', 'paragraph'],
+      }),
+    ],
+  });
+
+  newcomment = '<p>Hello, Tiptap!</p>';
 
   constructor(private readonly commentairesService: CommentairesService) {}
 
@@ -22,5 +39,17 @@ export class CommentairesComponent implements OnInit {
       },
       (err) => {}
     );
+  }
+
+  addComments(): void {}
+
+  newsection(e): void {
+    console.log(e);
+    const node = document.createElement('DIV'); // Create a <li> node
+    const textnode = document.createTextNode('Water'); // Create a text node
+    node.appendChild(textnode); // Append the text to <li>
+    document.getElementById('comentid').appendChild(node); // Append <li> to <ul> with id="myList"
+    document.getElementById('comentid').classList.add('mydiv');
+    document.getElementById('comentid').classList.add('uk-section');
   }
 }

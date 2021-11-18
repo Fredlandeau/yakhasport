@@ -22,6 +22,7 @@ import { MapComponent } from './map/map.component';
 import { CovidComponent } from './covid/covid.component';
 import { LoginComponent } from './login/login.component';
 import { CommentairesComponent } from './commentaires/commentaires.component';
+import { NgxTiptapModule } from 'ngx-tiptap';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { CommentairesComponent } from './commentaires/commentaires.component';
     HttpClientModule,
     HttpClientJsonpModule,
     GoogleMapsModule,
+    NgxTiptapModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
