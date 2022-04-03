@@ -1,31 +1,31 @@
-generator client {
-  provider = "prisma-client-js"
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
 }
 
-datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+generator client {
+  provider = "prisma-client-js"
 }
 
 model commentaires {
   id      Int       @id @default(autoincrement())
   userid  Int?
   user    user?     @relation(fields: [userid], references: [id])
-  date    DateTime? @default(now()) @db.DateTime(0)
-  coments String?   @db.MediumText
-  type    String?   @db.VarChar(50)
-  publie  Boolean?  @default(true) @db.TinyInt
+  date    DateTime? @default(now())
+  coments String?
+  type    String?
+  publie  Boolean?  @default(true)
 }
 
 model user {
   id           Int            @id @default(autoincrement())
-  username     String?        @db.VarChar(50)
-  nom          String?        @db.VarChar(50)
-  prenom       String?        @db.VarChar(50)
-  email        String?        @db.VarChar(50)
-  mdp          String?        @db.VarChar(50)
-  pouvoir      String?        @db.VarChar(50)
-  createdat    DateTime?      @db.DateTime(0)
-  updatedat    DateTime?      @db.DateTime(0)
+  username     String?
+  nom          String?
+  prenom       String?
+  email        String?
+  mdp          String?
+  pouvoir      String?
+  createdat    DateTime?
+  updatedat    DateTime?
   commentaires commentaires[]
 }

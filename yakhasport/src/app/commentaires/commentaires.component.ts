@@ -48,8 +48,10 @@ export class CommentairesComponent implements OnInit {
     const node = document.createElement('DIV'); // Create a <li> node
     const textnode = document.createTextNode('Water'); // Create a text node
     node.appendChild(textnode); // Append the text to <li>
-    document.getElementById('comentid').appendChild(node); // Append <li> to <ul> with id="myList"
-    document.getElementById('comentid').classList.add('mydiv');
-    document.getElementById('comentid').classList.add('uk-section');
+    node.classList.add('uk-section');
+    const wheretoAdd = document.getElementById('comentid').firstChild;
+    wheretoAdd.appendChild(node); // Append <li> to <ul> with id="myList"
+    //  document.getElementById('comentid').classList.add('mydiv');
+    // document.getElementById('comentid').classList.add('uk-section');
   }
 }

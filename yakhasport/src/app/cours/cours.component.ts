@@ -27,7 +27,7 @@ export class CoursComponent implements OnInit {
         'Planning des cours de la salle de sport La Fabrik Fumel, videos de cours',
     });
 
-    //  this.getPlanning();
+    this.getPlanning();
   }
 
   getPlanning(): void {

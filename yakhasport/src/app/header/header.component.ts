@@ -42,6 +42,12 @@ const headercontent = [
     slogan2: 'Créez un compte pour rester en contact',
     imgurl: '../../assets/visite/accueil/IMG-20201117-WA0007.jpg',
   },
+  {
+    url: '/news',
+    slogan: 'Les derniéres news de yakhasport Fumel',
+    slogan2: 'Les nouveautés',
+    imgurl: '../../assets/visite/accueil/IMG-20201009-WA0017.jpg',
+  },
 ];
 
 @Component({

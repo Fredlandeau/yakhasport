@@ -23,6 +23,7 @@ import { CovidComponent } from './covid/covid.component';
 import { LoginComponent } from './login/login.component';
 import { CommentairesComponent } from './commentaires/commentaires.component';
 import { NgxTiptapModule } from 'ngx-tiptap';
+import { NewsComponent } from './news/news.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { NgxTiptapModule } from 'ngx-tiptap';
     CovidComponent,
     LoginComponent,
     CommentairesComponent,
+    NewsComponent,
   ],
   imports: [
     BrowserModule,

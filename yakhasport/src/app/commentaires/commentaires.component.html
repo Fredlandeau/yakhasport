@@ -29,13 +29,14 @@
 <div>
     <button class="uk-button" (click)="editor.chain().focus().toggleBulletList().run()">go</button>
 </div>
-<tiptap-editor [editor]="editor" [(ngModel)]="newcomment" id="comentid">
+<tiptap-editor [editor]="editor" [(ngModel)]="newcomment" id="comentid" style="width:100%">
 </tiptap-editor>
 <tiptap-bubble-menu [editor]="editor" class="bubble-menu">
     <!-- Anything that should be rendered inside bubble menu -->
     <button (click)="editor.chain().focus().toggleBulletList().run()">de</button>
     <button (click)="editor.chain().focus().setTextAlign('center').run()">center</button>
     <button (click)="editor.chain().focus().setTextAlign('right').run()">droite</button>
+    <button (click)="newsection($event)">section</button>
 </tiptap-bubble-menu>
 
 <tiptap-floating-menu [editor]="editor" class="floating-menu">

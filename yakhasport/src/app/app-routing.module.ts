@@ -3,6 +3,7 @@ import { Routes, RouterModule, ExtraOptions } from '@angular/router';
 import { AbonnementsComponent } from './abonnements/abonnements.component';
 import { CoursComponent } from './cours/cours.component';
 import { LoginComponent } from './login/login.component';
+import { NewsComponent } from './news/news.component';
 import { VisiteComponent } from './visite/visite.component';
 
 const routes: Routes = [
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'abonnements/:id',
     component: AbonnementsComponent,
+  },
+  {
+    path: 'news',
+    component: NewsComponent,
   },
   {
     path: 'cours',

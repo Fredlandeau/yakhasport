@@ -20,24 +20,21 @@ export class MapComponent implements OnInit {
   options: google.maps.MapOptions = {
     center: { lat: 44.48493, lng: 0.95125 },
     zoom: 18,
-    clickableIcons: true
+    clickableIcons: true,
   };
 
   markeroptions: google.maps.MarkerOptions = {
     position: { lat: 44.48493, lng: 0.95125 },
     title: 'Yakhasport',
     // label: { color: 'red', text: 'yakhasport' }
-  }
+  };
 
   @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow;
-
-
-
 
   constructor(httpClient: HttpClient) {
     this.apiLoaded = httpClient
       .jsonp(
-        'https://maps.googleapis.com/maps/api/js?key=AIzaSyA9cwffU0jhH5kSemiz7TV1hnbi2VaLWzo',
+        'https://maps.googleapis.com/maps/api/js?key=AIzaSyBK1pSARrL2T8_OJddZ1s-kNExeKxRZfRg',
         'callback'
       )
       .pipe(
@@ -45,9 +42,9 @@ export class MapComponent implements OnInit {
         catchError(() => of(false))
       );
   }
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
-  openInfoWindow(marker: MapMarker) {
+  openInfoWindow(marker: MapMarker): void {
     // console.log(marker);
     this.infoWindow.open(marker);
   }
