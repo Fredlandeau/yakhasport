@@ -160,6 +160,11 @@
                             </div>
                         </div>
                     </div>
+                    <div class="uk-flex uk-flex-row">
+                        <button class="uk-button uk-button-default" (click)="this.editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()" [ngClass]="{
+                        'uk-button-danger': editor.isActive('table')
+                      }">table</button>
+                    </div>
                 </div>
             </nav>
         </div>
