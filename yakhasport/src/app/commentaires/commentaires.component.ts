@@ -36,6 +36,7 @@ export class CommentairesComponent implements OnInit {
     this.commentairesService.getComments().subscribe(
       (res) => {
         this.coments = res;
+        this.newcomment = res[0].coments;
       },
       (err) => {}
     );

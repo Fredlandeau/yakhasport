@@ -25,4 +25,8 @@ export class CommentairesService {
   getComments(): Observable<Commentaires[]> {
     return this.http.get<Commentaires[]>(`${ApiUrl}/commentaires/general`);
   }
+
+  addComment(comment: Commentaires): Observable<Commentaires> {
+    return this.http.post<Commentaires>(`${ApiUrl}/commentaires`, comment);
+  }
 }

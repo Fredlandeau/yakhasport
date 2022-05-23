@@ -17,6 +17,15 @@ model commentaires {
   publie  Boolean?  @default(true)
 }
 
+model news {
+  id      Int       @id @default(autoincrement())
+  date    DateTime? @default(now())
+  content String?
+  type    String?
+  order   Int?
+  publie  Boolean?  @default(true)
+}
+
 model user {
   id           Int            @id @default(autoincrement())
   username     String?

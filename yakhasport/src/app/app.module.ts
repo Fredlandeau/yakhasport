@@ -24,6 +24,7 @@ import { LoginComponent } from './login/login.component';
 import { CommentairesComponent } from './commentaires/commentaires.component';
 import { NgxTiptapModule } from 'ngx-tiptap';
 import { NewsComponent } from './news/news.component';
+import { NewsviewerComponent } from './news/newsviewer/newsviewer.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { NewsComponent } from './news/news.component';
     LoginComponent,
     CommentairesComponent,
     NewsComponent,
+    NewsviewerComponent,
   ],
   imports: [
     BrowserModule,

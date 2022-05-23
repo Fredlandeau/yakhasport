@@ -12,4 +12,16 @@ export class CommentairesService {
       orderBy: { id: 'desc' },
     });
   }
+
+  async createComents(newcoment: commentaires): Promise<any> {
+    return await this.prisma.commentaires.create({
+      data: {
+        userid: newcoment.userid,
+        publie: true,
+        date: new Date(),
+        coments: newcoment.coments,
+        type: 'general',
+      },
+    });
+  }
 }

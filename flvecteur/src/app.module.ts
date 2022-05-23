@@ -7,6 +7,7 @@ import { UserModule } from './user/user.module';
 import { CommentairesModule } from './commentaires/commentaires.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { AuthModule } from './auth/auth.module';
+import { NewsModule } from './news/news.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { AuthModule } from './auth/auth.module';
     UserModule,
     AuthModule,
     CommentairesModule,
+    NewsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

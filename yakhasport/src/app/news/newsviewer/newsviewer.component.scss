@@ -69,11 +69,6 @@
         p {
             margin: 0;
         }
-        div {
-            &.ProseMirror-selectednode {
-                outline: 3px solid #022230;
-            }
-        }
     }
 }
 
@@ -85,11 +80,4 @@
 .resize-cursor {
     cursor: ew-resize;
     cursor: col-resize;
-}
-
-.borderRose {
-    border-top: 3px solid #9c2744;
-    border-bottom: 3px solid #9c2744;
-    /* width: 100%;
-  margin-left: 0; */
 }
