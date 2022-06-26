@@ -13,6 +13,7 @@ import { NewsModule } from './news/news.module';
   imports: [
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '../../yakhasport/dist', 'yakhasport'),
+      // rootPath: join(__dirname, '../yakhasport/dist', 'yakhasport'),
       // rootPath: join(__dirname, '..', 'front'),
       exclude: ['/api*'],
     }),

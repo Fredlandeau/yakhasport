@@ -10,7 +10,7 @@ import TableRow from '@tiptap/extension-table-row';
 import TableCell from '@tiptap/extension-table-cell';
 import TableHeader from '@tiptap/extension-table-header';
 import Gapcursor from '@tiptap/extension-gapcursor';
-
+import * as uikit from 'uikit';
 import CustomImage from '../custom-image';
 import { News, NewsService } from '../news.service';
 import { UserService } from 'src/app/shared/user.service';
@@ -146,7 +146,7 @@ export class NewsviewerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('loggé: ', this.userService.isLogged());
+    // console.log('loggé: ', this.userService.isLogged());
     this.isLogged = this.userService.isLogged() === undefined ? false : true;
   }
 
@@ -162,6 +162,7 @@ export class NewsviewerComponent implements OnInit {
       (res) => {
         console.log('updateok');
         this.editor.options.editable = false;
+        // window.location.reload();
       },
       (err) => {
         console.log('erreur sauve: ', err.message);
@@ -171,10 +172,54 @@ export class NewsviewerComponent implements OnInit {
 
   supprimer(): void {
     this.newsService.deleteNews(this.content.id).subscribe(
-      (res) => {},
+      (res) => {
+        console.log('delete ok');
+        window.location.reload();
+      },
       (err) => {
         console.log('erreur: ', err.message);
       }
     );
+  }
+
+  // Custom Image
+  getAllImages(): void {
+    this.newsService.getAllImages2().subscribe(
+      (res) => {
+        console.log(res);
+        console.log('all images: ', res);
+      },
+      (err) => {
+        console.log(err.message);
+      }
+    );
+  }
+
+  openListeImages(): void {
+    uikit
+      .modal('#imagelisteEdit')
+      .toggle()
+      .then((val) => {
+        console.log(val);
+      });
+  }
+
+  getSelected(): void {
+    console.log('seleted');
+  }
+
+  onImageToAdd(image): void {
+    console.log(image);
+
+    uikit.modal('#imagelisteEdit').toggle();
+    this.editor
+      .chain()
+      .focus()
+      .setImage({ src: 'http://localhost:3001/api/news/image/' + image.file })
+      .run();
+  }
+
+  addImage(): void {
+    this.openListeImages();
   }
 }

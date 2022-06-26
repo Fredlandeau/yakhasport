@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Commentaires } from '../commentaires/commentaires.service';
+import jwt_decode from 'jwt-decode';
 
 const ApiUrl = environment.apiUrl;
 
@@ -18,6 +19,12 @@ export interface User {
   commentaires: Commentaires[];
 }
 
+export interface JWT {
+  id?: string;
+  iat?: number;
+  exp?: number;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -26,7 +33,15 @@ export class UserService {
 
   isLogged(): any | undefined {
     const token = localStorage.getItem('ACCESS_TOKEN');
-    return token || undefined;
+    if (!token) {
+      return undefined;
+    }
+    const decoded: JWT = jwt_decode(token);
+    const tokenIsNotExpired = decoded.exp > new Date().getTime() / 1000;
+    if (!tokenIsNotExpired) {
+      localStorage.removeItem('ACCESS_TOKEN');
+    }
+    return tokenIsNotExpired ? token : undefined;
   }
 
   getProlfile(): Observable<User> {

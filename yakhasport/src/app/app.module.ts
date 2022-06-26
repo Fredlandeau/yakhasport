@@ -25,6 +25,7 @@ import { CommentairesComponent } from './commentaires/commentaires.component';
 import { NgxTiptapModule } from 'ngx-tiptap';
 import { NewsComponent } from './news/news.component';
 import { NewsviewerComponent } from './news/newsviewer/newsviewer.component';
+import { NewsimagesComponent } from './news/newsimages/newsimages.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { NewsviewerComponent } from './news/newsviewer/newsviewer.component';
     CommentairesComponent,
     NewsComponent,
     NewsviewerComponent,
+    NewsimagesComponent,
   ],
   imports: [
     BrowserModule,

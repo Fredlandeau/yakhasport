@@ -13,7 +13,7 @@
 
     </div>
 
-    <article class="uk-article uk-margin-left uk-margin-right">
+    <article class="uk-article uk-margin-left uk-margin-right" *ngIf="isLogged">
         <div class="editor__header uk-active uk-border-rounded uk-margin uk-margin-top">
             <nav class="uk-navbar-container" uk-navbar>
                 <div class="uk-navbar-left">
@@ -98,7 +98,8 @@
           }"></button>
 
                     <div class="uk-flex uk-flex-row">
-                        <button class="uk-button uk-button-default" uk-icon="image" (click)="editor.chain().focus().setImage({ src: '../../assets/yakhasport_bandeau.jpg' }).run()" [ngClass]="{
+
+                        <button class="uk-button uk-button-default" uk-icon="image" (click)="addImage()" [ngClass]="{
                       'uk-button-danger': editor.isActive('custom-image')
                     }"></button>
                         <div class="uk-flex uk-flex-column" *ngIf="editor.isActive('custom-image')">
@@ -234,12 +235,27 @@
                         </div>
                     </div>
                 </div>
-                <button (click)="AddGrid()">grid</button>
+                <button class="uk-button uk-button-default" (click)="AddGrid()" [ngClass]="{'uk-button-danger': editor.isActive('grid')}">grid</button>
             </nav>
         </div>
 
         <tiptap-editor [editor]="editor" [(ngModel)]="newcomment" id="comentid" style="width: 100%">
         </tiptap-editor>
+        <button class="uk-button uk-button-default" uk-icon="reply" (click)="saveContent()">ENREGISTRER</button>
     </article>
-    <button class="uk-button uk-button-default" uk-icon="reply" (click)="saveContent()">ENREGISTRER</button>
+
+
+    <!-- This is the modal -->
+    <div id="imageliste" class="uk-modal-container" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body">
+            <h2 class="uk-modal-title">Liste des images</h2>
+            <div>
+                <app-newsimages (Selected)="onImageToAdd($event)"></app-newsimages>
+            </div>
+            <p class="uk-text-right">
+                <button class="uk-button uk-button-default uk-modal-close" type="button">Annuler</button>
+                <button class="uk-button uk-button-primary" (click)="getSelected()" type="button">Ajoute séléction</button>
+            </p>
+        </div>
+    </div>
 </div>

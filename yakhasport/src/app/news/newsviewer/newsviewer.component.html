@@ -81,9 +81,9 @@
 }"></button>
 
         <div class="uk-flex uk-flex-row">
-            <button class="uk-button uk-button-default" uk-icon="image" (click)="editor.chain().focus().setImage({ src: '../../assets/yakhasport_bandeau.jpg' }).run()" [ngClass]="{
-        'uk-button-danger': editor.isActive('custom-image')
-      }"></button>
+            <button class="uk-button uk-button-default" uk-icon="image" (click)="addImage()" [ngClass]="{
+            'uk-button-danger': editor.isActive('custom-image')
+          }"></button>
             <div class="uk-flex uk-flex-column" *ngIf="editor.isActive('custom-image')">
                 <div class="uk-margin-auto-left uk-margin-auto-right">Size</div>
                 <div class="uk-flex uk-flex-row">
@@ -246,3 +246,16 @@
     <button class="uk-button uk-button-default" uk-icon="check" (click)="editerValid()" *ngIf="this.editor.options.editable"></button>
     <button class="uk-button uk-button-default" uk-icon="trash" (click)="supprimer()" *ngIf="this.editor.options.editable"></button>
 </nav>
+<!-- Moodal Liste Image -->
+<div id="imagelisteEdit" class="uk-modal-container" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">Liste des images</h2>
+        <div>
+            <app-newsimages (Selected)="onImageToAdd($event)"></app-newsimages>
+        </div>
+        <p class="uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Annuler</button>
+            <button class="uk-button uk-button-primary" (click)="getSelected()" type="button">Ajoute séléction</button>
+        </p>
+    </div>
+</div>

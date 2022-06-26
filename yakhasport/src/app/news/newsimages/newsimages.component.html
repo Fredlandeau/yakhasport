@@ -1,0 +1,16 @@
+<div class="uk-grid-divider  uk-child-width-1-3@s uk-text-center" uk-grid>
+
+    <div *ngFor="let image of Images" (click)="selected(image)">
+        <div class="uk-padding image-selected" [class.active]="image.file === imageselected">
+            <img [src]="'http://localhost:3001/api/news/image/' + image.file" width="100%" height="auto">
+            <p>{{image.file}}</p>
+        </div>
+    </div>
+</div>
+<div class="uk-container uk-margin-top">
+    <h4>Nouvelle image</h4>
+    <p>Choisissez une image à ajouter</p>
+    <form>
+        <input type="file" placeholder="Charger le fichier" (change)="sendFile($event)">
+    </form>
+</div>

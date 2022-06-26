@@ -37,9 +37,8 @@ const headercontent = [
   },
   {
     url: '/connexion',
-    slogan:
-      'Vous souhaitez commenter, vous êtes administrateur, alors connectez-vous',
-    slogan2: 'Créez un compte pour rester en contact',
+    slogan: 'Ajoutez des news, vous êtes administrateur, alors connectez-vous',
+    slogan2: 'Communiquez les nouveautés',
     imgurl: '../../assets/visite/accueil/IMG-20201117-WA0007.jpg',
   },
   {

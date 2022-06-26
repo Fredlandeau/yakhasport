@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { User } from '../shared/user.service';
@@ -27,6 +27,15 @@ export class CommentairesService {
   }
 
   addComment(comment: Commentaires): Observable<Commentaires> {
-    return this.http.post<Commentaires>(`${ApiUrl}/commentaires`, comment);
+    const httpOtions = {
+      Headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN'),
+      }),
+    };
+
+    return this.http.post<Commentaires>(`${ApiUrl}/commentaires`, comment, {
+      headers: httpOtions.Headers,
+    });
   }
 }

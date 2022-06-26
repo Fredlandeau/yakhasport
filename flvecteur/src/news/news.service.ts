@@ -1,6 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { news, PrismaClient } from '@prisma/client';
 
+import * as fs from 'fs';
+import * as path from 'path';
+
 @Injectable()
 export class NewsService {
   constructor(private readonly prisma: PrismaClient) {}

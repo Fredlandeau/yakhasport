@@ -37,7 +37,7 @@
         width: 100%;
         td,
         th {
-            border: 2px solid #ced4da;
+            border: 2px solid #464747;
             box-sizing: border-box;
             min-width: 1em;
             padding: 3px 5px;
@@ -48,9 +48,10 @@
             }
         }
         th {
-            background-color: #f1f3f5;
+            background-color: #9c2744;
             font-weight: bold;
             text-align: left;
+            color: #ddd7d7
         }
         .selectedCell:after {
             background: rgba(200, 200, 255, 0.4);

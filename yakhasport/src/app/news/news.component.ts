@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import * as uikit from 'uikit';
+
 import {
   AnyCommands,
   Editor,
@@ -24,6 +26,8 @@ import CustomImage from './custom-image';
 
 import { CommentairesService } from '../commentaires/commentaires.service';
 import { News, NewsService } from './news.service';
+import { TipTapCustomImage } from './custom-uploadimage';
+import { UserService } from '../shared/user.service';
 
 /* export const Grid = Node.create({
   name: 'grid',
@@ -270,18 +274,30 @@ export class NewsComponent implements OnInit {
           contenteditable: true,
         },
       }),
+      // TipTapCustomImage(this.upload()),
       /* new Grid2(),
       Image2, */
     ],
   });
 
-  newcomment = '<p>Nouvel article!</p>';
+  newcomment = '<p>Nouvel article !</p>';
   AllNews: News[];
+  ImageToAdd: any;
+  isLogged = false;
 
-  constructor(private readonly newsService: NewsService) {}
+  constructor(
+    private readonly newsService: NewsService,
+    private readonly userService: UserService
+  ) {}
 
   ngOnInit(): void {
+    this.isLogged = this.userService.isLogged() === undefined ? false : true;
     this.getNews();
+    this.getAllImages();
+  }
+
+  upload(): any {
+    console.log();
   }
 
   getNews(): void {
@@ -348,6 +364,7 @@ export class NewsComponent implements OnInit {
     this.newsService.addNews(contentToAdd).subscribe(
       (res) => {
         console.log('ajouté: ', res);
+        window.location.reload();
       },
       (err) => {
         console.log('erreur:', err.message);
@@ -382,5 +399,45 @@ export class NewsComponent implements OnInit {
     const toadd = '<node-grid></node-grid>';
     this.editor.chain().focus().insertContent(toadd).run();
     // this.editor.chain().focus().insertContent('grid').run();
+  }
+
+  getAllImages(): void {
+    this.newsService.getAllImages2().subscribe(
+      (res) => {
+        console.log(res);
+        console.log('all images: ', res);
+      },
+      (err) => {
+        console.log(err.message);
+      }
+    );
+  }
+
+  openListeImages(): void {
+    uikit
+      .modal('#imageliste')
+      .toggle()
+      .then((val) => {
+        console.log(val);
+      });
+  }
+
+  getSelected(): void {
+    console.log('seleted');
+  }
+
+  onImageToAdd(image): void {
+    console.log(image);
+
+    uikit.modal('#imageliste').toggle();
+    this.editor
+      .chain()
+      .focus()
+      .setImage({ src: 'http://localhost:3001/api/news/image/' + image.file })
+      .run();
+  }
+
+  addImage(): void {
+    this.openListeImages();
   }
 }

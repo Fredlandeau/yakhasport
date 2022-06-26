@@ -48,6 +48,7 @@ export class CoursComponent implements OnInit {
         const blob = new Blob([res], { type: 'img/jpg' });
         const unsafeImg = URL.createObjectURL(blob);
         this.planning = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
+        console.log(this.planning);
         this.isLoadingImg = false;
       });
   }
