@@ -1,103 +1,164 @@
 import Paragraph from '@tiptap/extension-paragraph';
-import { mergeAttributes } from '@tiptap/core';
+import { mergeAttributes, Node } from '@tiptap/core';
 
-export default Paragraph.extend({
-    name: 'grid',
+const Grid = Node.create({
+    name: "grid",
+    selectable: true,
 
-    defaultOptions: {
-        ...Image.options,
-        sizes: ['small', 'medium', 'large', 'xlarge'],
-        float: ['none', 'left', 'right']
+    addOptions() {
+        return {
+            HTMLAttributes: {}
+        };
     },
-
     addAttributes() {
         return {
-            ...Image.config.addAttributes(),
-            size: {
-                default: 'small',
-                rendered: false,
+            column: {
+                default: 'default',
+                rendered: true
             },
-            float: {
-                default: 'none',
-                rendered: false
+            color: {
+                default: 'default',
+                rendered: true
+            },
+            center: {
+                default: 'default',
+                render: true,
             }
         };
     },
-
-    addCommands() {
-        return {
-            // This is unchanged from the original
-            // Image setImage function
-            // However, if I extended addComands in
-            // the same way as addAttributes `this`
-            // seemed to lose context, so I've just
-            // copied it in here directly
-            setGrid:
-                (options) =>
-                ({ tr, dispatch }) => {
-                    const { selection } = tr;
-                    const node = this.type.create(options);
-
-                    if (dispatch) {
-                        tr.replaceRangeWith(selection.from, selection.to, node);
-                    }
-
-                    return true;
-                },
-            setSizeGrid:
-                (attributes) =>
-                ({ tr, dispatch }) => {
-                    // Check it's a valid size option
-                    if (!this.options.sizes.includes(attributes.size)) {
-                        return false;
-                    }
-
-                    const { selection } = tr;
-
-                    // We're calling, for example:
-                    //
-                    // editor
-                    //   .chain()
-                    //   .focus()
-                    //   .setSize({ size: 'small' })
-                    //   .run()
-                    //
-                    // from the bubble menu
-                    // so `attributes` is { size: 'small' }
-                    // which will add/overwrite the current
-                    // `selection.node.attrs` attributes
-                    // including, importantly, `src` :)
-
-                    const options = {
-                        ...selection.node.attrs,
-                        ...attributes,
-                    };
-
-                    const node = this.type.create(options);
-
-                    if (dispatch) {
-                        tr.replaceRangeWith(selection.from, selection.to, node);
-                    }
-                },
-        };
+    content: "block*",
+    group: "block",
+    defining: true,
+    draggable: true,
+    parseHTML() {
+        return [{ tag: 'div[data-type="grid"]' }];
     },
-
     renderHTML({ node, HTMLAttributes }) {
-        // When we render the HTML, grab the
-        // size and add an appropriate
-        // corresponding class
 
-        const size = node.attrs.size;
-        const float = node.attrs.float;
-        console.log('attirbs', node.attrs);
-        // HTMLAttributes.class = ' custom-image-' + size;
+        console.log(HTMLAttributes);
+        //  console.log(node.attributes.class);
+        // HTMLAttributes.class = node.attrs.class;
+        // HTMLAttributes.class = 'uk-card uk-card-body'
 
-        HTMLAttributes.class = 'uk-grid-match uk-child-width-1-3@m';
+
+        const color = HTMLAttributes.color
+        HTMLAttributes = {...HTMLAttributes, 'uk-grid': '', 'data-type': this.name }
+        HTMLAttributes.class = 'uk-child-width-expand@s uk-padding'
+
+        switch (color) {
+            case 'default':
+                HTMLAttributes.class += ''
+                break;
+
+            case 'primary':
+                HTMLAttributes.class += ' uk-background-primary'
+                break;
+            case 'secondary':
+                HTMLAttributes.class += ' uk-background-secondary'
+                break;
+            case 'tersary':
+                HTMLAttributes.class += ' uk-card-tersary'
+                break;
+
+            default:
+                HTMLAttributes.class += ''
+                break;
+        }
 
 
         return [
-            'div',
+            "div",
             mergeAttributes(this.options.HTMLAttributes, HTMLAttributes),
+            0
         ];
     },
+    addCommands() {
+        return {
+            setGrid: (attributes) => ({ commands }) => {
+                return commands.wrapIn("grid", attributes);
+            },
+            toggleGrid: (attributes) => ({ commands }) => {
+                return commands.toggleWrap("grid", attributes);
+            },
+            unsetGrid: (attributes) => ({ commands }) => {
+                return commands.lift("grid");
+            }
+        };
+    },
+    onUpdate({ HTMLAttributes }) {
+        const classes = [
+            "table-responsive",
+            "aspect-w-16 aspect-h-9",
+            "resp-container"
+        ];
+        // console.log(node.attrs.class)
+        // console.log(HTMLAttributes);
+
+        return;
+        const transaction = this.editor.state.tr;
+        let needsToWrapTables = false;
+
+        this.editor.state.doc.descendants((node, pos) => {
+            console.log(transaction);
+            console.log('content', node.content)
+
+            if (node.type.name === "div" && node.firstChild !== null) {
+                if (node.firstChild.type.name !== "table") return;
+                if (node.attrs.class == null) {
+                    needsToWrapTables = true;
+                    transaction.setNodeMarkup(pos, undefined, {
+                        ...node.attrs,
+                        class: "table-responsive"
+                    });
+                    return true;
+                }
+            }
+            return false;
+        });
+
+        if (needsToWrapTables) {
+            transaction.setMeta("preventUpdate", true);
+            this.editor.view.dispatch(transaction);
+            transaction.setMeta("preventUpdate", false);
+        }
+
+        this.editor.state.doc.descendants((node, pos) => {
+            if (node.type.name === "grid" && classes.includes(node.attrs.class)) {
+                if (
+                    node.firstChild !== null &&
+                    node.content.lastChild.type.name == "div"
+                ) {
+
+
+
+                    transaction.replaceWith(
+                        pos,
+                        pos + node.nodeSize,
+                        node.content.lastChild
+                    );
+                    this.editor.view.dispatch(transaction);
+                    return true;
+                }
+
+                if (
+                    node.firstChild !== null &&
+                    node.firstChild.type.name == "paragraph"
+                ) {
+                    transaction.replaceWith(pos, pos + node.nodeSize, node.content);
+                    this.editor.view.dispatch(transaction);
+                    return true;
+                }
+
+                if (node.childCount == 0) {
+                    transaction.deleteRange(pos, pos + node.nodeSize);
+                    this.editor.view.dispatch(transaction);
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
 });
+
+export default Grid;
+export { Grid };

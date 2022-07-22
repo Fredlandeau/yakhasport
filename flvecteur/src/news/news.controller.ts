@@ -62,7 +62,7 @@ export class NewsController {
   @Get('images_old')
   display(@Res() res) {
     const lastImages = getMostRecentFile('./files/news');
-    console.log(lastImages);
+    //  console.log(lastImages);
     res.setHeader('Content-Type', 'image/jpg');
     res.sendFile(lastImages.file, { root: './files/news' });
     // return lastImages;
@@ -79,7 +79,7 @@ export class NewsController {
   @Get('allimages')
   getFile() {
     const lastImages = orderReccentFiles('./files/news');
-    console.log('lastimage', lastImages);
+    // console.log('lastimage', lastImages);
 
     return lastImages;
     // res.end();
@@ -96,7 +96,7 @@ export class NewsController {
     }),
   )
   uploadFile(@UploadedFile() file: Express.Multer.File) {
-    console.log(file);
+    // console.log(file);
     const fileResponse = {
       originalname: file.originalname,
       filename: file.filename,

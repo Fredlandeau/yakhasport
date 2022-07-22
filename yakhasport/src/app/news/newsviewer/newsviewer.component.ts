@@ -1,7 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Editor, mergeAttributes, Node } from '@tiptap/core';
-import StarterKit from '@tiptap/starter-kit';
+// import StarterKit from '@tiptap/starter-kit';
+import Document from '@tiptap/extension-document';
+import HardBreak from '@tiptap/extension-hard-break';
+import Paragraph from '@tiptap/extension-paragraph';
+import Text from '@tiptap/extension-text';
+import TextStyle from '@tiptap/extension-text-style';
 import TextAlign from '@tiptap/extension-text-align';
+
 import Image from '@tiptap/extension-image';
 import Dropcursor from '@tiptap/extension-dropcursor';
 import Heading from '@tiptap/extension-heading';
@@ -12,10 +18,17 @@ import TableHeader from '@tiptap/extension-table-header';
 import Gapcursor from '@tiptap/extension-gapcursor';
 import * as uikit from 'uikit';
 import CustomImage from '../custom-image';
+import Div from '../divextension';
+import Grid from '../grid';
+import GlobalClass from '../GlobalClass';
+import History from '@tiptap/extension-history';
+import Italic from '@tiptap/extension-italic';
+import Bold from '@tiptap/extension-bold';
+
 import { News, NewsService } from '../news.service';
 import { UserService } from 'src/app/shared/user.service';
 
-const Grid = Node.create({
+const Grid2 = Node.create({
   name: 'grid', // unique name for the Node
   group: 'block', // belongs to the 'block' group of extensions
   selectable: true, // so we can select the video
@@ -106,9 +119,24 @@ export class NewsviewerComponent implements OnInit {
   editor = new Editor({
     editable: false,
     extensions: [
-      StarterKit,
+      // StarterKit,
+      Document,
+      Dropcursor,
+      Gapcursor,
+      HardBreak,
+      History,
+      Italic,
+      Bold,
+      Paragraph /* .configure({
+        HTMLAttributes: {
+          class: 'uk-text-default',
+          contenteditable: true,
+        },
+      }), */,
+      Text,
+      TextStyle,
       TextAlign.configure({
-        types: ['heading', 'paragraph'],
+        types: ['heading', 'paragraph', 'image'],
       }),
       /* Image.configure({
         HTMLAttributes: {
@@ -119,7 +147,7 @@ export class NewsviewerComponent implements OnInit {
       }), */
       CustomImage.configure({
         HTMLAttributes: {
-          class: 'uk-margin-left uk-margin-right',
+          // class: 'uk-margin-left uk-margin-right',
           contenteditable: true,
         },
       }),
@@ -136,7 +164,18 @@ export class NewsviewerComponent implements OnInit {
       TableHeader,
       TableCell,
       Gapcursor,
-      Grid,
+      Grid.configure({
+        HTMLAttributes: {
+          contenteditable: true,
+        },
+      }),
+      Div.configure({
+        HTMLAttributes: {
+          class: 'uk-margin-left uk-margin-right',
+          contenteditable: true,
+        },
+      }),
+      GlobalClass,
     ],
   });
 

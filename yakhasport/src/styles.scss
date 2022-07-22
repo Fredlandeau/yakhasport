@@ -77,9 +77,52 @@
             margin: 0;
         }
     }
-    div {
-        &.ProseMirror-selectednode {
-            outline: 3px solid #e61313;
+    &[contenteditable="true"] {
+        p:hover {
+            &:before {
+                position: absolute;
+                top: -17px;
+                left: 10px;
+                background-color: #4649ee;
+                border-radius: 2px 2px 0 0;
+                color: #ddd7d7;
+                font-size: 8px;
+                padding: 2px;
+                content: "P";
+            }
+        }
+        div {
+            /* &.ProseMirror-selectednode {
+                outline: 3px solid #e61313;
+            } */
+            &[data-type="div"][contenteditable="true"]:hover {
+                outline: 1px solid #4649ee;
+                &:before {
+                    position: absolute;
+                    top: -17px;
+                    left: 10px;
+                    background-color: #4649ee;
+                    border-radius: 2px 2px 0 0;
+                    color: #ddd7d7;
+                    font-size: 8px;
+                    padding: 2px;
+                    content: "DIV";
+                }
+            }
+            &[data-type="grid"][contenteditable="true"]:hover {
+                outline: 1px solid #4649ee;
+                &:before {
+                    position: absolute;
+                    top: -17px;
+                    left: 10px;
+                    background-color: #4649ee;
+                    border-radius: 2px 2px 0 0;
+                    color: #ddd7d7;
+                    font-size: 8px;
+                    padding: 2px;
+                    content: "GRID";
+                }
+            }
         }
     }
 }
@@ -92,4 +135,9 @@
 .resize-cursor {
     cursor: ew-resize;
     cursor: col-resize;
+}
+
+.uk-card-tersary {
+    color: rgb(241, 238, 238);
+    background-color: #9c2744;
 }

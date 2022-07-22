@@ -49,7 +49,7 @@ export class AppController {
   @Get('planning')
   display(@Res() res) {
     const lastPlanning = getMostRecentFile('./files/planning');
-    console.log(lastPlanning);
+    // console.log(lastPlanning);
     res.setHeader('Content-Type', 'image/jpg');
     res.sendFile(lastPlanning.file, { root: './files/planning' });
   }
@@ -65,7 +65,7 @@ export class AppController {
     }),
   )
   uploadFile(@UploadedFile() file: Express.Multer.File) {
-    console.log(file);
+    // console.log(file);
     const fileResponse = {
       originalname: file.originalname,
       filename: file.filename,

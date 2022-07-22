@@ -33,25 +33,9 @@ export class NewsimagesComponent implements OnInit {
         console.log(err.message);
       }
     );
-    this.newsService.getOneImage('DSC_0119 - Copie-1515.JPG').subscribe(
+    /* this.newsService.getOneImage('DSC_0119 - Copie-1515.JPG').subscribe(
       (res) => {
         console.log('image', res);
-
-        /* const blob = new Blob([res], { type: 'img/jpg' });
-        const unsafeImg = URL.createObjectURL(blob);
-        this.Images.push(this.sanitizer.bypassSecurityTrustUrl(unsafeImg)); */
-      },
-      (err) => {
-        console.log('erreur images :', err.message);
-      }
-    );
-    /* this.newsService.getAllImages2().subscribe(
-      (res) => {
-        console.log('image', res);
-
-        const blob = new Blob([res], { type: 'img/jpg' });
-        const unsafeImg = URL.createObjectURL(blob);
-        this.Images.push(this.sanitizer.bypassSecurityTrustUrl(unsafeImg));
       },
       (err) => {
         console.log('erreur images :', err.message);

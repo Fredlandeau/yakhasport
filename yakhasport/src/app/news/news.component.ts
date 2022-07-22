@@ -10,6 +10,11 @@ import {
   Node,
 } from '@tiptap/core';
 import StarterKit from '@tiptap/starter-kit';
+import Document from '@tiptap/extension-document';
+import HardBreak from '@tiptap/extension-hard-break';
+import Paragraph from '@tiptap/extension-paragraph';
+import Text from '@tiptap/extension-text';
+import TextStyle from '@tiptap/extension-text-style';
 import TextAlign from '@tiptap/extension-text-align';
 import Image from '@tiptap/extension-image';
 import Dropcursor from '@tiptap/extension-dropcursor';
@@ -19,9 +24,15 @@ import TableRow from '@tiptap/extension-table-row';
 import TableCell from '@tiptap/extension-table-cell';
 import TableHeader from '@tiptap/extension-table-header';
 import Gapcursor from '@tiptap/extension-gapcursor';
+import History from '@tiptap/extension-history';
+import Italic from '@tiptap/extension-italic';
+import Bold from '@tiptap/extension-bold';
 
 import CustomImage from './custom-image';
-// import Grid from './grid';
+import Div from './divextension';
+import Grid from './grid';
+
+import GlobalClass from './GlobalClass';
 // import Paragraphs from './gris';
 
 import { CommentairesService } from '../commentaires/commentaires.service';
@@ -149,8 +160,8 @@ const Image2 = Node.create({
   },
 }); */
 
-const Grid = Node.create({
-  name: 'grid', // unique name for the Node
+const NodeGrid = Node.create({
+  name: 'node-grid', // unique name for the Node
   group: 'block', // belongs to the 'block' group of extensions
   selectable: true, // so we can select the video
   draggable: true, // so we can drag the video
@@ -239,9 +250,24 @@ const Grid = Node.create({
 export class NewsComponent implements OnInit {
   editor = new Editor({
     extensions: [
-      StarterKit,
+      // StarterKit,
+      Document,
+      Dropcursor,
+      Gapcursor,
+      HardBreak,
+      History,
+      Italic,
+      Bold,
+      Paragraph /* .configure({
+        HTMLAttributes: {
+          class: 'uk-text-default',
+          contenteditable: true,
+        },
+      }), */,
+      Text,
+      TextStyle,
       TextAlign.configure({
-        types: ['heading', 'paragraph'],
+        types: ['heading', 'paragraph', 'image'],
       }),
       /* Image.configure({
         HTMLAttributes: {
@@ -252,7 +278,7 @@ export class NewsComponent implements OnInit {
       }), */
       CustomImage.configure({
         HTMLAttributes: {
-          class: 'uk-margin-left uk-margin-right',
+          // class: 'uk-margin-left uk-margin-right',
           contenteditable: true,
         },
       }),
@@ -274,6 +300,13 @@ export class NewsComponent implements OnInit {
           contenteditable: true,
         },
       }),
+      Div.configure({
+        HTMLAttributes: {
+          class: 'uk-margin-left uk-margin-right',
+          contenteditable: true,
+        },
+      }),
+      GlobalClass,
       // TipTapCustomImage(this.upload()),
       /* new Grid2(),
       Image2, */
